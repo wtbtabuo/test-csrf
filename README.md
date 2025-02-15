@@ -100,3 +100,10 @@ CSRF対策として、以下の方法を `victim.py` および `corrected_victim
 
 このプロジェクトを通じて、CSRFの仕組みと防御策を学ぶことができます！ 🚀
 
+# 個人的なメモ
+- `victim*.py`の`session["user"] = "victim"`の部分で、ブラウザのCookieにセッションデータを保存しており、以降はそのデータを使用している
+- `response.set_cookie("csrf_token", csrf_token, httponly=True, samesite="Strict")
+`
+  - `httponly=True`->javascriptのdocument.cookieなどのコマンドでトークンを取得できない
+  - `SameSite=Strict`で異なる、異なるおリシンからのリクエストでCookieが送信されなくなる。
+  - 「異なるオリジン」の基準は 「ドメイン」「プロトコル」「ポート」の違い
